@@ -8,6 +8,12 @@ var routes = require('./todosRoutes');
 
 var app = express();
 
+// My Own middleware
+
+app.use(function (req, res, next) {
+    console.log("I am a custom middleware");
+    next();
+})
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -28,6 +34,7 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {
